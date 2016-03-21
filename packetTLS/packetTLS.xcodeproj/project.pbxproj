@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA4934FB1CA08BA20037D067 /* NMNetDiagnostic.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4934F91CA08BA20037D067 /* NMNetDiagnostic.m */; };
+		CA4934FC1CA08BA20037D067 /* NMPacketUDP.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4934FA1CA08BA20037D067 /* NMPacketUDP.m */; };
 		CAB008501CA0629700837F7D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB0084F1CA0629700837F7D /* main.m */; };
 		CAB008531CA0629700837F7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB008521CA0629700837F7D /* AppDelegate.m */; };
 		CAB008561CA0629700837F7D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB008551CA0629700837F7D /* ViewController.m */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA4934F71CA08BA20037D067 /* NMNetDiagnostic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMNetDiagnostic.h; sourceTree = "<group>"; };
+		CA4934F81CA08BA20037D067 /* NMPacketUDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPacketUDP.h; sourceTree = "<group>"; };
+		CA4934F91CA08BA20037D067 /* NMNetDiagnostic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMNetDiagnostic.m; sourceTree = "<group>"; };
+		CA4934FA1CA08BA20037D067 /* NMPacketUDP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMPacketUDP.m; sourceTree = "<group>"; };
 		CAB0084B1CA0629700837F7D /* packetTLS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = packetTLS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB0084F1CA0629700837F7D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAB008511CA0629700837F7D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,6 +64,10 @@
 		CAB0084D1CA0629700837F7D /* packetTLS */ = {
 			isa = PBXGroup;
 			children = (
+				CA4934F71CA08BA20037D067 /* NMNetDiagnostic.h */,
+				CA4934F91CA08BA20037D067 /* NMNetDiagnostic.m */,
+				CA4934F81CA08BA20037D067 /* NMPacketUDP.h */,
+				CA4934FA1CA08BA20037D067 /* NMPacketUDP.m */,
 				CAB008511CA0629700837F7D /* AppDelegate.h */,
 				CAB008521CA0629700837F7D /* AppDelegate.m */,
 				CAB008541CA0629700837F7D /* ViewController.h */,
@@ -152,6 +162,8 @@
 				CAB008561CA0629700837F7D /* ViewController.m in Sources */,
 				CAB008531CA0629700837F7D /* AppDelegate.m in Sources */,
 				CAB008501CA0629700837F7D /* main.m in Sources */,
+				CA4934FC1CA08BA20037D067 /* NMPacketUDP.m in Sources */,
+				CA4934FB1CA08BA20037D067 /* NMNetDiagnostic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +314,7 @@
 				CAB008641CA0629700837F7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
