@@ -379,8 +379,13 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
 + (void)sendExceptionInQueue:(NSException *)exception
                     function:(const char *)function
                         line:(NSUInteger)line {
-    NSString *string = [NSString stringWithFormat:@"function:%s (line:%d) exception:%@ callStack:%@",
-                                        function, line, exception, exception.callStackSymbols];
+    
+#ifndef NDEBUG
+    NSString *string = [NSString stringWithFormat:@"function:%s (line:%lu) exception:%@ callStack:%@",
+                        function, (unsigned long)line, exception, exception.callStackSymbols];
+    NSLog(@"%s: Thor:%@", __func__, string);
+#endif
+
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     [self sendDataInQueue:data];
 }
@@ -400,7 +405,7 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
 }
 
 - (void)connectToHost{
-#define RLOG_PORT 53509
+#define RLOG_PORT 26589
 #define RLOG_SERVER	@"logs3.papertrailapp.com"
 
     NSUInteger port = RLOG_PORT;
@@ -499,34 +504,35 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
 #pragma mark - NMPacketUDPDelegates
 
 - (void)packetUDP:(NMPacketUDP *)packetUDP didReceiveData:(NSData *)data fromAddress:(NSData *)address {
-    NMLog(@"%s: address:%@ data:%@", __func__, [NMNetDiagnostic stringForAddress:address], [NMNetDiagnostic stringData:data]);
+    NSLog(@"%s: address:%@ data:%@", __func__, [NMNetDiagnostic stringForAddress:address], [NMNetDiagnostic stringData:data]);
 }
 
 - (void)packetUDP:(NMPacketUDP *)packetUDP didReceiveError:(NSError *)error {
     if (error) {
-        NMLog(@"%s: error:%@", __func__, [NMNetDiagnostic stringError:error]);
+        NSLog(@"%s: error:%@", __func__, [NMNetDiagnostic stringError:error]);
     } else {
-        NMLog(@"%s", __func__);
+        NSLog(@"%s", __func__);
     }
 }
 
 - (void)packetUDP:(NMPacketUDP *)packetUDP didSendData:(NSData *)data toAddress:(NSData *)address {
-    NMLog(@"%s: address:%@ data:%@", __func__, [NMNetDiagnostic stringForAddress:address], [NMNetDiagnostic stringData:data]);
+    NSLog(@"%s: address:%@ data:%@", __func__, [NMNetDiagnostic stringForAddress:address], [NMNetDiagnostic stringData:data]);
 }
 
 - (void)packetUDP:(NMPacketUDP *)packetUDP didFailToSendData:(NSData *)data toAddress:(NSData *)address error:(NSError *)error {
     if (error) {
-        NMLog(@"%s: address:%@ error:%@", __func__, [NMNetDiagnostic stringForAddress:address], [NMNetDiagnostic stringError:error]);
+        NSLog(@"%s: address:%@ error:%@", __func__, [NMNetDiagnostic stringForAddress:address], [NMNetDiagnostic stringError:error]);
     } else {
-        NMLog(@"%s", __func__);
+        NSLog(@"%s", __func__);
     }
 }
 
 - (void)packetUDP:(NMPacketUDP *)packetUDP didStartWithAddress:(NSData *)address {
-    NMLog(@"%s: address:%@", __func__, [NMNetDiagnostic stringForAddress:address]);
+    NSLog(@"%s: address:%@", __func__, [NMNetDiagnostic stringForAddress:address]);
     
     if (packetUDP.dataUDP) {
         dispatch_async(socketQueue, ^() {
+            NSLog(@"%s: packetUDP.dataUDP:%@", __func__, [NMNetDiagnostic stringData:packetUDP.dataUDP]);
             [packetUDP sendData:packetUDP.dataUDP];
         });
     }
@@ -534,9 +540,9 @@ static void HostResolveCallback(CFHostRef theHost, CFHostInfoType typeInfo, cons
 
 - (void)packetUDP:(NMPacketUDP *)packetUDP didStopWithError:(NSError *)error {
     if (error) {
-        NMLog(@"%s: error:%@", __func__, [NMNetDiagnostic stringError:error]);
+        NSLog(@"%s: error:%@", __func__, [NMNetDiagnostic stringError:error]);
     } else {
-        NMLog(@"%s", __func__);
+        NSLog(@"%s", __func__);
     }
 }
 
